@@ -38,9 +38,9 @@ class NewVisitorTest(unittest.TestCase):
         # That the site has generated a unique URL for her -- there is some
         # explanatory text to that effect.
 
-        # She visists that URL - her to- do list is still there
+        # She visists that URL - her to-do list is still there
 
         # Satisfied, she goes back to sleep
 
-if __name__ == '__main__':
+    if __name__ == '__main__':
         unittest.main()
