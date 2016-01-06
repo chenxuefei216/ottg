@@ -42,8 +42,8 @@ class NewVisitorTest(unittest.TestCase):
 
         # When she hits enter, the page updates, and now the page lists
         # "1. Buy peacock feathers" as an item in a to-do lists
-        self.send_input_to_table('Buy peacock feather')
-        self.check_for_row_in_list_table('1. Buy peacock feather')
+        self.send_input_to_table('Buy peacock feathers')
+        self.check_for_row_in_list_table('1. Buy peacock feathers')
 
 
         # There is still a text box inviting her to add another item.
@@ -51,7 +51,7 @@ class NewVisitorTest(unittest.TestCase):
         self.send_input_to_table('Use peacock feathers to make fly')
 
         #The homepage updates again, and now shows both items on her lists
-        self.check_for_row_in_list_table('1. Buy peacock feather')
+        self.check_for_row_in_list_table('1. Buy peacock feathers')
         self.check_for_row_in_list_table('2. Use peacock feathers to make fly')
 
         # Edith wonders whether the site will remember her list. Then she sees
