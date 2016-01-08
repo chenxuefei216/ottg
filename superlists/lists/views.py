@@ -12,10 +12,9 @@ def new_list(request):
     return redirect('/lists/%d/' % (new_list.id,))
 
 def view_list(request, list_id):
-    list_ = List.objects.get(id=list_id)
-    items=Item.objects.filter(list=list_)
+    list_ = List.objects.get(id=list_id)    
     # 'items' is a key.
-    return render(request, 'list.html', {'items': items, 'list': list_,})
+    return render(request, 'list.html', { 'list': list_,})
 
 def add_item(request, list_id):
     list_ = List.objects.get(id=list_id)
