@@ -93,6 +93,16 @@ class ListViewTest(TestCase):
         # what list did the response passed in when it renders
         self.assertEqual(response.context['list'], correct_list)
 
+# my own class
+class DeleteItemTest(TestCase):
+    def test_item_can_be_deleted(self):
+        list_ = List.objects.create()
+        item = Item.objects.create(text='item to be deleted', list=list_)
+        response = self.client.get(
+            '/lists/items/{{item_id}}/delete'
+        )
+        assertRedirects(response, '/lists/%d/' % (list_.id))
+
 class ItemAndListModelsTest(TestCase):
 
     def test_saving_and_retrieving_items_in_list(self):
