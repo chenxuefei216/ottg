@@ -94,4 +94,22 @@ class ListViewTest(TestCase):
         self.assertEqual(new_item.text, 'A new item for an existing list')
         self.assertEqual(new_item.list, correct_list)
 
-    
+    def test_validation_errors_stay_on_list_page(self):
+        current_list = List.objects.create()
+        response = self.client.post(
+            '/lists/%d/' % (current_list.id,),
+            data={'item_text': ''}
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'list.html')
+        expected_error = escape("You can't have an empty item")
+        self.assertContains(response, expected_error)
+
+    def test_invalid_items_arent_saved(self):
+        current_list = List.objects.create()
+        response = self.client.post(
+            '/lists/%d/' % (current_list.id,),
+            data={'item_text': ''}
+        )
+
+        self.assertEqual(Item.objects.count(), 0)
