@@ -98,10 +98,7 @@ class DeleteItemTest(TestCase):
     def test_item_can_be_deleted(self):
         list_ = List.objects.create()
         item_ = Item.objects.create(text='item to be deleted', list=list_)
-        self.client.post(
-            '/lists/%d/add_item' % (list_.id,),
-            data={'item_text': item_.text}
-        )
+
         response = self.client.get(
             '/lists/items/%d/delete_item' % (item_.id)
         )

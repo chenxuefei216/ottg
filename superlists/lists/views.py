@@ -25,4 +25,4 @@ def delete_item(request, item_id):
     item_=Item.objects.get(id=item_id)
     list_=item_.list
     item_.delete()
-    return redirect('/list/%d/' % (list_.id))
+    return redirect('/lists/%d/' % (list_.id))

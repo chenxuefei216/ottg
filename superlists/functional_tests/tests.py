@@ -89,5 +89,5 @@ class NewVisitorTest(LiveServerTestCase):
         # then he notices that the item is no longer in the list
         page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Buy milk', page_text)
-        
+
         #Satisfied, they both go back to sleep
