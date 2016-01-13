@@ -20,7 +20,7 @@ from lists import views
 urlpatterns = [
     #^means begin, $ means end
     url(r'^new$', views.new_list, name="new_list"),
-    
+    url(r'^(\d+)/items/$', views.edit_list, name="view_list"),
     # "()" means to capture what is between the "/ /"
     url(r'^(\d+)/$', views.view_list, name="view_list"),
 ]

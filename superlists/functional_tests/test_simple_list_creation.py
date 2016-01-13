@@ -27,7 +27,7 @@ class NewVisitorTest(TodoFunctionalTest):
         # "1. Buy peacock feathers" as an item in a to-do lists
         edith_list_url = self.browser.current_url
         self.assertRegexpMatches(edith_list_url, '/lists/.+')
-        self.check_for_row_in_list_table('1. Buy peacock feathers')
+        self.check_for_row_in_list_table('Buy peacock feathers')
 
         # There is still a text box inviting her to add another item.
         # She enters "Use peacock feathers to make fly"

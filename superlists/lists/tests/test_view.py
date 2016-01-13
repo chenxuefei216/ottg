@@ -122,4 +122,16 @@ class ListViewTest(TestCase):
         self.assertContains(response, 'input type="checkbox"')
 
     def test_POST_item_toggles_done(self):
-        pass
+        current_list = List.objects.create()
+        item1=Item.objects.create(text="item 1", list=current_list)
+        item2=Item.objects.create(text="item 2", list=current_list)
+        response=self.client.post(
+            '/lists/%d/items/' % (current_list.id,),
+            data={'mark_item_done': item1.id}
+        )
+
+        self.assertRedirects(response, '/lists/%d/' % (current_list.id))
+        item1=Item.objects.get(id=item1.id)
+        item2=Item.objects.get(id=item2.id)
+        self.assertTrue(item1.is_done)
+        self.assertFalse(item2.is_done)
