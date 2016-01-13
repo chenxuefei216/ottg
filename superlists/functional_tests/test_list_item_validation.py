@@ -18,17 +18,17 @@ class ItemValidationTest(TodoFunctionalTest):
         #She tries again with some text for the item
         #which now works.
         self.send_input_to_table('Buy milk')
-        self.check_for_row_in_list_table('1. Buy milk')
+        self.check_for_row_in_list_table('Buy milk')
 
         # Perversely tries to enter a second blank item
         self.send_input_to_table('')
 
         #She receives a similar warning on the list page
-        self.check_for_row_in_list_table('1. Buy milk')
+        self.check_for_row_in_list_table('Buy milk')
         error = self.browser.find_element_by_css_selector('.has-error')
         self.assertEqual(error.text, "You can't have an empty item")
 
         #and she can correct it by filling some text in
         self.send_input_to_table('Make tea')
-        self.check_for_row_in_list_table('1. Buy milk')
-        self.check_for_row_in_list_table('2. Make tea')
+        self.check_for_row_in_list_table('Buy milk')
+        self.check_for_row_in_list_table('Make tea')

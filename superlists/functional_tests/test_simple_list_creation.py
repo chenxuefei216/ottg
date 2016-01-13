@@ -34,8 +34,8 @@ class NewVisitorTest(TodoFunctionalTest):
         self.send_input_to_table('Use peacock feathers to make fly')
 
         #The homepage updates again, and now shows both items on her lists
-        self.check_for_row_in_list_table('1. Buy peacock feathers')
-        self.check_for_row_in_list_table('2. Use peacock feathers to make fly')
+        self.check_for_row_in_list_table('Buy peacock feathers')
+        self.check_for_row_in_list_table('Use peacock feathers to make fly')
 
         # Now a new user Francis comes along
 
