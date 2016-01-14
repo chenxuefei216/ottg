@@ -17,6 +17,13 @@ class ToggleDoneTest(TodoFunctionalTest):
         except NoSuchElementException:
             self.fail("%s not marked done!" % (todo_text))
 
+    def check_not_marked_off(self, todo_text):
+        try:
+            self.check_marked_off(todo_text)
+        except:
+            return
+        self.fail("'%s' is marked done!" % (todo_text))
+
     def test_can_toggle_finished_items(self):
         # Edith makes a quick shopping list,
         # noticing a checkbox to toggle done items.
@@ -48,3 +55,34 @@ class ToggleDoneTest(TodoFunctionalTest):
         self.check_marked_off('Buy fishing line')
         self.toggle_todo_done(['Tie some flys'])
         self.check_marked_off('Tie some flys')
+
+    def test_can_toggle_finished_items(self):
+        # edith's ties flying hobby is booming, and she wants
+        # a list that she can use over and over
+        self.browser.get(self.live_server_url)
+        self.send_input_to_table('Buy feathers')
+        self.send_input_to_table('Buy fishing line')
+        self.send_input_to_table('Buy sparkles')
+
+        # she looks in her closet, and already has fishing line.
+        self.toggle_todo_done(['Buy fishing line'])
+        self.check_marked_off('Buy fishing line')
+
+        # she goes to the store, and finishes shopping
+        self.toggle_todo_done([
+            'Buy feathers',
+            'Buy sparkles'
+        ])
+        self.check_marked_off('Buy feathers')
+        self.check_marked_off('Buy sparkles')
+        self.check_marked_off('Buy fishing line')
+
+        #She makes some flys, and her closet is empty
+        self.toggle_todo_done([
+            'Buy feathers',
+            'But fishing line',
+            'Buy sparkles'
+        ])
+        self.check_not_marked_off('Buy feathers')
+        self.check_not_marked_off('Buy sparkles')
+        self.check_not_marked_off('Buy fishing line')
