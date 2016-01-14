@@ -5,7 +5,7 @@ from lists.models import Item, List
 
 # Create your views here.
 def home_page(request):
-    return render(request, 'home.html')
+    return render(request, 'home.html', {'todo_lists': List.objects.all()})
 
 def new_list(request):
     item_text = request.POST['item_text']
@@ -36,7 +36,7 @@ def view_list(request, list_id):
         if request.POST.has_key('list_name'):
             list_.name = request.POST['list_name']
             list_.save()
-            
+
     return render(request, 'list.html', { 'list': list_, 'error': error})
 
 def edit_list(request, list_id):

@@ -13,7 +13,7 @@
                   {% if item.is_done %}checked="checked" {% endif %}
                   />
                 </td>
-                <td {% if item.is_done %} class="todo-done"{% endif %}>
+                <td class="content {% if item.is_done %} todo-done{% endif %}">
                   {{item.text}}
                 </td>
               </tr>
