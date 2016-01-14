@@ -129,6 +129,16 @@ class ListViewTest(TestCase):
         response=self.client.get('/lists/%d/' % current_list.id)
         self.assertContains(response, 'input type="checkbox"')
 
+    def test_edit_list_name(self):
+        current_list=List.objects.create()
+        self.client.post(
+            '/lists/%d/' % (current_list.id),
+            data={ 'list_name': 'New List'}
+        )
+
+        self.assertEqual(List.objects.first().name, 'New List')
+
+class EditListTest(TestCase):
     def test_POST_item_marks_done(self):
         current_list = List.objects.create()
         item1=Item.objects.create(text="item 1", list=current_list)

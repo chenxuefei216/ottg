@@ -26,13 +26,17 @@ def view_list(request, list_id):
     error = None
 
     if request.method == 'POST':
-        try:
-            item=Item(text = request.POST['item_text'], list=list_)
-            item.full_clean()
-            item.save()
-        except ValidationError:
-            error = "You can't have an empty item"
-
+        if request.POST.has_key('item_text'):
+            try:
+                item=Item(text = request.POST['item_text'], list=list_)
+                item.full_clean()
+                item.save()
+            except ValidationError:
+                error = "You can't have an empty item"
+        if request.POST.has_key('list_name'):
+            list_.name = request.POST['list_name']
+            list_.save()
+            
     return render(request, 'list.html', { 'list': list_, 'error': error})
 
 def edit_list(request, list_id):
