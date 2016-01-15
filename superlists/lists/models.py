@@ -4,7 +4,7 @@ from django.db import models
 
 # extending models.Model giving all the saving and retriving methods we need in test.py
 class List(models.Model):
-    pass
+    name = models.TextField(default = '')
 
 class Item(models.Model):
     text = models.TextField(default = '')
