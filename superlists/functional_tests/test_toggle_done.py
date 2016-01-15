@@ -80,7 +80,7 @@ class ToggleDoneTest(TodoFunctionalTest):
         #She makes some flys, and her closet is empty
         self.toggle_todo_done([
             'Buy feathers',
-            'But fishing line',
+            'Buy fishing line',
             'Buy sparkles'
         ])
         self.check_not_marked_off('Buy feathers')
